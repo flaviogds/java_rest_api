@@ -1,4 +1,4 @@
-package api.rest.personapi.dto;
+package api.rest.personapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

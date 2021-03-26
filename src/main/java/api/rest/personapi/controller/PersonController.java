@@ -1,10 +1,13 @@
 package api.rest.personapi.controller;
 
-import api.rest.personapi.dto.MessageResponseDTO;
-import api.rest.personapi.entity.Person;
+import api.rest.personapi.dto.request.PersonDTO;
+import api.rest.personapi.dto.response.MessageResponseDTO;
 import api.rest.personapi.service.PersonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -18,7 +21,12 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody Person person) {
-        return personService.createPerson(person);
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
+        return personService.createPerson(personDTO);
+    }
+
+    @GetMapping
+    public List<PersonDTO> listAll(){
+        return personService.listAll();
     }
 }
